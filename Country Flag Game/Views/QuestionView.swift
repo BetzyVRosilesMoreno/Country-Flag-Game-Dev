@@ -21,16 +21,16 @@ struct QuestionView: View {
                         .foregroundColor(.yellow)
                 }
                 ProgressBar(progress: gameManager.progress)
-                VStack(spacing: 10) {
+                VStack(spacing: 10, content:  {
                     Text("Which Country's flag is this?")
                     Image(gameManager.country)
                         .resizable()
                         .frame(width: 300, height: 200)
                     ForEach(gameManager.answerChoices) { answer in
-                        Answerrow(answer: answer)
+                        AnswerRow(answer: answer)
                             .environmentObject(gameManager)
                     }
-                }
+                })
                 Button {
                     gameManager.goToNextQuestion()
                 } label: {
@@ -39,9 +39,7 @@ struct QuestionView: View {
                 .disabled(!gameManager.answerSelected)
                 Spacer()
             }
-            .foregroundColor(.yellow)
             .padding()
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(.cyan)
         }
         
